@@ -48,7 +48,8 @@ const customLaunchers = {
 
 let files = [
   'site/docs/4.1/assets/js/vendor/popper.min.js',
-  'node_modules/hammerjs/hammer.min.js'
+  'node_modules/hammerjs/hammer.min.js',
+  'node_modules/hammer-simulator/index.js'
 ]
 
 const conf = {
