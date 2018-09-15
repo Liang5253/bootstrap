@@ -11,15 +11,16 @@ node_js:
 install:
   - bundle install --deployment --jobs=3 --retry=3
   - npm install
-script:
+before_script:
   - ruby -v
   - gem -v
   - bundle -v
   - java -version
+script:
   - npm test
-  - travis_fold:start:check-broken-links
+  - echo "travis_fold:start:check-broken-links"
   - if [ "$TRAVIS_NODE_VERSION" = "8" ]; then npm run check-broken-links; fi
-  - travis_fold:end:check-broken-links
+  - echo "travis_fold:end:check-broken-links"
 after_success:
   - if [ "$TRAVIS_NODE_VERSION" = "8" ]; then npm run coveralls; fi
 stages:
