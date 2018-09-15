@@ -18,9 +18,7 @@ before_script:
   - java -version
 script:
   - npm test
-  - echo "travis_fold:start:check-broken-links"
-  - if [ "$TRAVIS_NODE_VERSION" = "8" ]; then npm run check-broken-links; fi
-  - echo "travis_fold:end:check-broken-links"
+  - if [ "$TRAVIS_NODE_VERSION" = "8" ]; then echo "travis_fold:start:check-broken-links"; npm run check-broken-links; echo "travis_fold:end:check-broken-links"; fi
 after_success:
   - if [ "$TRAVIS_NODE_VERSION" = "8" ]; then npm run coveralls; fi
 stages:
