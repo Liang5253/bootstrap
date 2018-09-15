@@ -8,17 +8,18 @@ git:
 node_js:
   - "6"
   - "8"
-before_install:
-  - ruby -v
-  - gem -v
-  - bundle -v
-  - java -version
 install:
   - bundle install --deployment --jobs=3 --retry=3
   - npm install
 script:
+  - ruby -v
+  - gem -v
+  - bundle -v
+  - java -version
   - npm test
+  - travis_fold:start:check-broken-links
   - if [ "$TRAVIS_NODE_VERSION" = "8" ]; then npm run check-broken-links; fi
+  - travis_fold:end:check-broken-links
 after_success:
   - if [ "$TRAVIS_NODE_VERSION" = "8" ]; then npm run coveralls; fi
 stages:
